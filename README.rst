@@ -15,11 +15,20 @@ M-x ``gitch-new-branch`` can be used (but is not required) to save the current c
 Note that, for switching branches, gitch automatically stashes any pending changes and reapplies these automatically when switching back.
 
 
-
 Requirements:
 -------------
  - git-emacs    https://github.com/tsgates/git-emacs
  - desktop.el   http://repo.or.cz/w/emacs.git/blob/HEAD:/lisp/desktop.el
+
+
+Install
+-------
+
+Download and place gitch.el in your .emacs.d/ directory.
+Then place this in your .emacs file:
+
+ - ``(load-file "~/.emacs.d/gitch.el")``
+ - ``(setq gitch-current-repository "~/my-project/")``
 
 
 Usage:

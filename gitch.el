@@ -1,10 +1,18 @@
-;; gitch.el
+;;; gitch.el --- Automatically open and close buffers when switching git
+;;               branches, using git-emacs and desktop.el.
+;;
+;; Author: Rutger Prins <rutger@rutgerprins.net>
 ;;
 ;;
 ;; Requirements:
 ;; - git-emacs    https://github.com/tsgates/git-emacs
 ;; - desktop.el   http://repo.or.cz/w/emacs.git/blob/HEAD:/lisp/desktop.el
 ;;
+;; Install:
+;; - Place this file in your .emacs.d/ directory.
+;; Then add this to your .emacs file:
+;; - (load-file "~/.emacs.d/gitch.el")``
+;; - (setq gitch-current-repository "~/my-project/")``
 ;;
 ;; Usage:
 ;; - M-x gitch-switch-branch:
