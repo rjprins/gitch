@@ -22,6 +22,12 @@
 ;(add-hook 'kill-emacs-hook 'gitch-save)
 
 
+;; Set optimal Desktop settings:
+(setq desktop-buffers-not-to-save "^*.+*$")
+(setq desktop-clear-preserve-buffers (quote ("\\*.*\\*")))
+(setq desktop-load-locked-desktop t)
+
+
 (defcustom gitch-current-repository "."
   "The current git repository (a directory).
    Can be changed using 'gitch-switch-repository."
