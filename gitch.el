@@ -39,22 +39,22 @@
   (interactive)
   (cd gitch-current-repository)
   (let ((branch (or branch (git--select-branch (git--current-branch)))))
-    (gitch-save)
+    (gitch-save-buffers)
     (gitch--stash)
     (git-switch-branch branch)
     (desktop-clear)
     (gitch--stash-pop-for-branch branch)
-    (gitch-load)))
+    (gitch-load-buffers)))
 
 (defun gitch-switch-repository (repository)
   "Close the current buffers and open buffers for the current branch
    of the new repository, if it was visited previously."
   (interactive "DSelect a git repository: ")
-  (gitch-save)
+  (gitch-save-buffers)
   (cd repository)
   (set 'gitch-current-repository (git--get-top-dir))
   (desktop-clear)
-  (gitch-load))
+  (gitch-load-buffers))
 
 (defun gitch-load-buffers ()
   (interactive)
@@ -64,21 +64,6 @@
   (interactive)
   (gitch--desktop-do 'desktop-save))
 
-(defun gitch-repository-name ()
-  (car (last (split-string (git--get-top-dir) "/" t))))
-
-(defun gitch--current-desktop ()
-  "Return the desktop file for the current repository and branch"
-  (progn
-    (cd gitch-current-repository)
-    (concat gitch-desktop-dir (gitch-repository-name) "/" (git--current-branch))))
-
-(defun gitch--desktop-do (desktop-func)
-  (let ((current-desktop (gitch--current-desktop)))
-    (if (not (file-exists-p current-desktop))
-        (make-directory current-desktop t)
-      (funcall desktop-func current-desktop))))
-
 (defun gitch-new-branch (new-branch)
   (interactive "sNew branch name: ")
   (progn
@@ -86,7 +71,22 @@
     (gitch--stash)
     (git-checkout-to-new-branch new-branch "master")
     (desktop-clear)
-    (gitch-load)))
+    (gitch-load-buffers)))
+
+(defun gitch--repository-name ()
+  (car (last (split-string (git--get-top-dir) "/" t))))
+
+(defun gitch--current-desktop ()
+  "Return the desktop file for the current repository and branch"
+  (progn
+    (cd gitch-current-repository)
+    (concat gitch-desktop-dir (gitch--repository-name) "/" (git--current-branch))))
+
+(defun gitch--desktop-do (desktop-func)
+  (let ((current-desktop (gitch--current-desktop)))
+    (if (not (file-exists-p current-desktop))
+        (make-directory current-desktop t)
+      (funcall desktop-func current-desktop))))
 
 (defun gitch--stash ()
   (shell-command "git stash"))

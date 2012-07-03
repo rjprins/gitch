@@ -31,6 +31,6 @@ Usage:
           4. Pop stash if any for branch X.
           5. Open buffers that were previously open for branch X.
  - M-x ``gitch-switch-repository``: Same as above but for repositories.
- - M-x ``gitch-save``: Save buffers for the current branch.
- - M-x ``gitch-load``: Load buffers for the current branch.
- - M-x ``gitch-new``:  Save buffers, checkout new branch.
+ - M-x ``gitch-save-buffers``: Save buffers for the current branch.
+ - M-x ``gitch-load-buffers``: Load buffers for the current branch.
+ - M-x ``gitch-new-branch``:  Save buffers, checkout new branch.
