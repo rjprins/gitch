@@ -26,8 +26,8 @@
 
 
 ;; Optional hooks:
-;(add-hook 'emacs-startup-hook 'gitch-load)
-;(add-hook 'kill-emacs-hook 'gitch-save)
+;(add-hook 'emacs-startup-hook 'gitch-load-buffers)
+;(add-hook 'kill-emacs-hook 'gitch-save-buffers)
 
 
 ;; Set optimal Desktop settings:
